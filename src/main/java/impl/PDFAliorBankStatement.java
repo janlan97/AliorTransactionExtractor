@@ -1,4 +1,9 @@
-package model;
+package impl;
+
+import model.Constants;
+import model.FieldTemplate;
+import model.PDFObject;
+import model.PDFObjectField;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,13 +21,13 @@ public class PDFAliorBankStatement extends PDFObject {
     protected void setFields() {
         if (fields == null) {
             fields = new HashMap<>();
-            fields.put("Statement_End__c", new PDFObjectField<LocalDate>("statementEnd",
+            fields.put("Statement_End__c", new PDFObjectField<>("statementEnd",
                     new FieldTemplate<>(Constants.valueOf("statementStartAndEnd"),
                             s -> LocalDate.parse(s, DateTimeFormatter.ofPattern("yyyy.MM.dd")), Pattern.MULTILINE, 2)));
-            fields.put("Statement_Start__c", new PDFObjectField<LocalDate>("statementStart",
+            fields.put("Statement_Start__c", new PDFObjectField<>("statementStart",
                     new FieldTemplate<>(Constants.valueOf("statementStartAndEnd"),
                             s -> LocalDate.parse(s, DateTimeFormatter.ofPattern("yyyy.MM.dd")), Pattern.MULTILINE, 1)));
-            fields.put("Generation_Date__c", new PDFObjectField<LocalDate>("statementGenerationDate",
+            fields.put("Generation_Date__c", new PDFObjectField<>("statementGenerationDate",
                     new FieldTemplate<>(Constants.valueOf("statementGenerationDate"),
                             s -> LocalDate.parse(s, DateTimeFormatter.ofPattern("yyyy.MM.dd")), 0, 1)));
             fields.put("Starting_Balance__c", new PDFObjectField<>("startingBalance",

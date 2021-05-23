@@ -1,7 +1,8 @@
-package model;
+package impl;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
+import model.PDFDataExtractor;
 
 import java.util.List;
 

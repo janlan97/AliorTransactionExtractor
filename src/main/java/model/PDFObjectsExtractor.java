@@ -36,8 +36,8 @@ public class PDFObjectsExtractor implements CSVFormat<PDFObject> {
 
     public Map<String, List<PDFObject>> extract() {
         Map<String, List<PDFObject>> objs = new HashMap<>();
-        for (int i = 0; i < pdfs.length; i++) {
-            PdfDocument pdfDoc = loadPdf(pdfs[i].getAbsolutePath());
+        for (File pdf : pdfs) {
+            PdfDocument pdfDoc = loadPdf(pdf.getAbsolutePath());
             PDFExtractor e = new PDFExtractor(pdfDoc, extractors);
             objs = e.extractPDFObjects();
         }
@@ -68,7 +68,6 @@ public class PDFObjectsExtractor implements CSVFormat<PDFObject> {
 
     @Override
     public PDFObject<PDFObject> convertBack(String elem) {
-        //elem.split(",").
         return null;
     }
 

@@ -1,7 +1,9 @@
-package model;
+package impl;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
+import model.Constants;
+import model.PDFDataExtractor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ public class PDFAliorTransactionExtractor implements PDFDataExtractor<PDFAliorTr
     @Override
     public String beforeProcessing(PdfDocument doc) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= doc.getNumberOfPages() - 0; i++) {
+        for (int i = 1; i <= doc.getNumberOfPages(); i++) {
             String textFromPdf = PdfTextExtractor.getTextFromPage(doc.getPage(i));
             String rawTextTrimmed = textFromPdf.replaceAll("\\u00A0", " ")
                     .replace(Constants.valueOf("txt0"), "")

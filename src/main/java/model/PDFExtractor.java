@@ -20,14 +20,13 @@ public class PDFExtractor {
             String processedRawPdfText = e.beforeProcessing(doc);
             List<String> chunks = e.processComposite(processedRawPdfText);
             if (chunks == null) {
-                PDFObject obj = (PDFObject) e.create(processedRawPdfText);
+                PDFObject obj = e.create(processedRawPdfText);
                 objs.add(obj);
                 extractedObjects.put(obj.getClass().getSimpleName(), objs);
             } else {
                 String className = null;
                 for (String chunk : chunks) {
-                    PDFObject obj = (PDFObject) e.create(chunk);
-                    System.out.println(obj);
+                    PDFObject obj = e.create(chunk);
                     if (className == null) {
                         className = obj.getClass().getSimpleName();
                     }

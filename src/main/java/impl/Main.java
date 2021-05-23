@@ -1,4 +1,8 @@
-package model;
+package impl;
+
+import impl.PDFAliorTransactionExtractor;
+import model.PDFDataExtractor;
+import model.PDFObjectsExtractor;
 
 import java.util.HashSet;
 import java.util.Map;

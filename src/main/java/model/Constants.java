@@ -27,6 +27,7 @@ public class Constants {
         constants.put("outcome", "Obciążenia ogółem: (-?\\d{1,}\\s?\\d{0,},\\d{2})");
         constants.put("unpaidInterestOnDebt", "Niespłacone odsetki od zadłużenia: (-?\\d{1,}\\s?\\d{0,},\\d{2})");
         constants.put("unpaidDebtServiceCosts", "Niespłacone koszty obsługi zadłużenia: (-?\\d{1,}\\s?\\d{0,},\\d{2})");
+        constants.put("malformedSpace", "\\u00A");
     }
 
     public static String valueOf(String key) {

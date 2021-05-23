@@ -15,24 +15,27 @@ public class PDFExtractor {
 
     public Map<String, List<PDFObject>> extractPDFObjects() {
         Map<String, List<PDFObject>> extractedObjects = new HashMap<String, List<PDFObject>>();
-        for (PDFDataExtractor e : extractors) {
-            List<PDFObject> objs = new ArrayList<>();
-            String processedRawPdfText = e.beforeProcessing(doc);
-            List<String> chunks = e.processComposite(processedRawPdfText);
+        for (PDFDataExtractor extractor : extractors) {
+            List<PDFObject> extractedPDFObjectInstances = new ArrayList<>();
+
+            String processedRawPdfText = extractor.beforeProcessing(doc);
+
+            List<String> chunks = extractor.processComposite(processedRawPdfText);
+
             if (chunks == null) {
-                PDFObject obj = e.create(processedRawPdfText);
-                objs.add(obj);
-                extractedObjects.put(obj.getClass().getSimpleName(), objs);
+                PDFObject extractedPdfObj = extractor.create(processedRawPdfText);
+                extractedPDFObjectInstances.add(extractedPdfObj);
+                extractedObjects.put(extractedPdfObj.getClass().getSimpleName(), extractedPDFObjectInstances);
             } else {
-                String className = null;
+                String PDFObjectClassName = null;
                 for (String chunk : chunks) {
-                    PDFObject obj = e.create(chunk);
-                    if (className == null) {
-                        className = obj.getClass().getSimpleName();
+                    PDFObject extractedPdfObj = extractor.create(chunk);
+                    if (PDFObjectClassName == null) {
+                        PDFObjectClassName = extractedPdfObj.getClass().getSimpleName();
                     }
-                    objs.add(obj);
+                    extractedPDFObjectInstances.add(extractedPdfObj);
                 }
-                extractedObjects.put(className, objs);
+                extractedObjects.put(PDFObjectClassName, extractedPDFObjectInstances);
             }
         }
         return extractedObjects;

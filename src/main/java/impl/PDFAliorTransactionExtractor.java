@@ -17,7 +17,7 @@ public class PDFAliorTransactionExtractor implements PDFDataExtractor<PDFAliorTr
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= doc.getNumberOfPages(); i++) {
             String textFromPdf = PdfTextExtractor.getTextFromPage(doc.getPage(i));
-            String rawTextTrimmed = textFromPdf.replaceAll("\\u00A0", " ")
+            String rawTextTrimmed = textFromPdf.replaceAll(Constants.valueOf("malformedSpace"), " ")
                     .replace(Constants.valueOf("txt0"), "")
                     .replace(Constants.valueOf("txt1"), "")
                     .replaceAll(Constants.valueOf("txt2"), "");
